@@ -1,4 +1,4 @@
-// Title, artist, and genre properties.
+// Array of songs with title, artist, and genre properties.
 const songs = [
     { title: "Hooked on a Feeling", artist: "Blue Swede", genre: "Pop" },
     { title: "Moonage Daydream", artist: "David Bowie", genre: "Rock" },
@@ -19,7 +19,7 @@ const songs = [
     // Added more songs
 ];
 
-// Guardian's preferred genre
+// Each Guardian's preferred genre
 const guardians = {
     "Star-Lord": "Rock",
     "Gamora": "Pop",
@@ -30,7 +30,6 @@ const guardians = {
 
 // Function to generate playlist based on preferred genre
 function generatePlaylist(guardians, songs) {
-    // Use the map() function to create playlists for each Guardian
     for (const guardian in guardians) {
         const playlist = songs.filter(song => song.genre === guardians[guardian]);
         displayPlaylist(guardian, playlist);
@@ -40,21 +39,29 @@ function generatePlaylist(guardians, songs) {
 // Function to display playlists
 function displayPlaylist(guardian, playlist) {
     const playlistsDiv = document.getElementById('playlists');
+    const playlistContainer = document.createElement('div');
+    playlistContainer.classList.add('playlist');
+    
     const guardianHeading = document.createElement('h2');
     guardianHeading.textContent = guardian + "'s Playlist";
+    guardianHeading.style.fontFamily = 'Arial, sans-serif'; // CSS style
+    playlistContainer.appendChild(guardianHeading);
+    
     const playlistUL = document.createElement('ul');
+    playlistUL.style.listStyleType = 'none'; // CSS style
 
     playlist.forEach(song => {
         const songLI = document.createElement('li');
         songLI.textContent = `${song.title} - ${song.artist}`;
+        songLI.classList.add('song'); // Add class for styling
         playlistUL.appendChild(songLI);
     });
 
-    playlistsDiv.appendChild(guardianHeading);
-    playlistsDiv.appendChild(playlistUL);
+    playlistContainer.appendChild(playlistUL);
+    playlistsDiv.appendChild(playlistContainer);
 }
 
-//Displays the playlists for each Guardian
+// Call generatePlaylist and display the playlists for each Guardian
 generatePlaylist(guardians, songs);
 
 
