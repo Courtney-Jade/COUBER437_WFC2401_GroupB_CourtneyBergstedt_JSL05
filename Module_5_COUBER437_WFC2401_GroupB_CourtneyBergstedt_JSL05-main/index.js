@@ -31,12 +31,12 @@ const guardians = {
 // Function to generate playlist based on preferred genre
 function generatePlaylist(guardians, songs) {
     for (const guardian in guardians) {
-        const playlist = songs.filter(song => song.genre === guardians[guardian]);
+        const playlist = songs.filter(song => song.genre === guardians[guardian]); //This will filter the songs basedon the Guardians preffered genre
         displayPlaylist(guardian, playlist);
     }
 }
 
-// Function to display playlists
+// Function to display playlists on the website
 function displayPlaylist(guardian, playlist) {
     const playlistsDiv = document.getElementById('playlists');
     const playlistContainer = document.createElement('div');
@@ -61,7 +61,7 @@ function displayPlaylist(guardian, playlist) {
     playlistsDiv.appendChild(playlistContainer);
 }
 
-// Call generatePlaylist and display the playlists for each Guardian
+// This will display the playlist for each Guardian
 generatePlaylist(guardians, songs);
 
 
